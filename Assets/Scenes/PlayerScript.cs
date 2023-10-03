@@ -10,6 +10,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         print("start");
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -19,16 +20,21 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        print("yv=" + rb.velocity.y);
+        
     }
+   
+
+
 
     // Update is called once per frame
     void Update()
     {
 
+
+
         
-        
-        
+
+
         int speed = 1;
         Vector2 velocity = rb.velocity;
         anim.SetBool("run", false);
@@ -54,18 +60,16 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKey("space") && velocity.y == 0f) 
         {
             velocity.y = 5f;
-            if (velocity.y != 0)
+            if (velocity.y != 0f)
                 {
                 anim.SetBool("jump", true);
-            }
+             
+                }
             
         }
+        
         rb.velocity = velocity;
-        /*if (Input.GetKey("s") == true)
-        {
-            print("player pressed down");
-            transform.position = new Vector2(transform.position.x, transform.position.y + (-speed * Time.deltaTime));
-        }*/
+
         if (Input.GetKey("a") == true)
         {
             print("player pressed left");
@@ -80,5 +84,11 @@ public class PlayerScript : MonoBehaviour
             sr.flipX = true;
             transform.position = new Vector2(transform.position.x + (speed * Time.deltaTime), transform.position.y);
         }
+
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.name == "coin")
+            Destroy(other.gameObject);
     }
 }
