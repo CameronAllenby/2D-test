@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2cda65d2eb4758447b3c197dffff397a
+guid: 1ab03a31c8bb78d48ad4f9b9c886d36f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1789352316141759169
-    second: VKUFkQ_0
+      213: 3320418213651818226
+    second: f364b7d0a49566891789d291b8b2e53f_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -158,13 +158,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: VKUFkQ_0
+      name: f364b7d0a49566891789d291b8b2e53f_0
       rect:
         serializedVersion: 2
-        x: 75
-        y: 25
-        width: 165
-        height: 199
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,8 +172,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f3519528c81fa27e0800000000000000
-      internalID: -1789352316141759169
+      spriteID: 2f62472e5ce741e20800000000000000
+      internalID: 3320418213651818226
       vertices: []
       indices: 
       edges: []

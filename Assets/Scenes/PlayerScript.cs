@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    Hscript helper;
     Rigidbody2D rb;
     Animator anim;
     SpriteRenderer sr;
     // Start is called before the first frame update
     void Start()
     {
-        
+        helper = gameObject.AddComponent<Hscript>();
         print("start");
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -32,16 +33,17 @@ public class PlayerScript : MonoBehaviour
 
 
 
-        
 
 
         int speed = 1;
+        anim.speed = 1;
         Vector2 velocity = rb.velocity;
         anim.SetBool("run", false);
         anim.SetBool("jump", false);
-       
+        
         if (Input.GetKey("v") == true)
         {
+            anim.speed = 10;
             speed = 2;
         }
 
@@ -57,15 +59,11 @@ public class PlayerScript : MonoBehaviour
             
 
         }
-        if (Input.GetKey("space") && velocity.y == 0f) 
+        if (Input.GetKey("space") && helper.DoRayCollisionCheck() == true)
         {
-            velocity.y = 5f;
-            if (velocity.y != 0f)
-                {
-                anim.SetBool("jump", true);
-             
-                }
-            
+            velocity.y = 3.5f;
+            anim.SetBool("jump", true);
+
         }
         
         rb.velocity = velocity;
