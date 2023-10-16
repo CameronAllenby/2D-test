@@ -11,6 +11,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         helper = gameObject.AddComponent<Hscript>();
         print("start");
         rb = GetComponent<Rigidbody2D>();
@@ -31,9 +32,7 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
 
-
-
-
+      
 
         int speed = 1;
         anim.speed = 1;
@@ -56,14 +55,18 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetKeyDown("e"))
         {
             anim.SetTrigger("attack1");
-            
-
         }
-        if (Input.GetKey("space") && helper.DoRayCollisionCheck() == true)
-        {
-            velocity.y = 3.5f;
-            anim.SetBool("jump", true);
 
+
+        if (helper.DoRayCollisionCheck() == true)
+        {
+            if (Input.GetKey("space"))
+            {
+                velocity.y = 3.5f;
+                anim.SetBool("jump", true);
+                print("do jump");
+
+            }
         }
         
         rb.velocity = velocity;
@@ -89,4 +92,5 @@ public class PlayerScript : MonoBehaviour
         if (other.gameObject.name == "coin")
             Destroy(other.gameObject);
     }
+
 }

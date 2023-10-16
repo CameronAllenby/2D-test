@@ -20,15 +20,26 @@ public class skell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float speed = 1f;
-        if (Input.GetKey("space"))
+        int speed = 0;
+        if (helper.Pacing() != 1)
         {
-            helper.FlipObject(true);    // this will execute the method in HelperScript.cs
+            speed = 1;
+            if (helper.Pacing() == 2)
+            {
+                speed = 1;
+            }
+            if (helper.Pacing() == 3)
+            {
+                speed = -1;
+            }
         }
+        transform.position = new Vector2(transform.position.x + (speed * Time.deltaTime), transform.position.y);
+        //float speed = 1f;
 
-        Vector3 scale = transform.localScale;
 
-        if (player.transform.position.x < 0.5 && transform.position.x > -0.5)
+        //Vector3 scale = transform.localScale;
+
+        /*if (player.transform.position.x < 0.5 && transform.position.x > -0.5)
         {
             speed = 0;
             print("yes");
@@ -53,10 +64,10 @@ public class skell : MonoBehaviour
         {
             speed = 0f;
            
-        }
-
-        
+        }*/
 
 
-    }*/
+
+
+    }
 }

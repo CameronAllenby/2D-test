@@ -15,35 +15,42 @@ public class Hscript : MonoBehaviour
 
     public bool DoRayCollisionCheck()
     {
-       
-        float rayLength = 0.5f; // length of raycast
-
+        float rayLength = 0.1f; // length of raycast
+        Vector3 rayOffset1 = new Vector3(0 ,-0.1f ,0);
+        Vector3 rayOffset2 = new Vector3(-0.1f, -0.1f, 0);
+        Vector3 rayOffset3 = new Vector3(0.1f, -0.1f, 0);
 
         //cast a ray downward 
         RaycastHit2D hit;
+        RaycastHit2D hit2;
+        RaycastHit2D hit3;
 
-        hit = Physics2D.Raycast(transform.position, -Vector2.up, rayLength, groundLayerMask);
+        hit = Physics2D.Raycast(transform.position + rayOffset1, Vector2.down, rayLength, groundLayerMask);
+        hit2 = Physics2D.Raycast(transform.position + rayOffset2, Vector2.down, rayLength, groundLayerMask);
+        hit3 = Physics2D.Raycast(transform.position + rayOffset3, Vector2.down, rayLength, groundLayerMask);
         bool ground = false;
         Color hitColor = Color.white;
-        Debug.DrawRay(transform.position, -Vector2.up * rayLength, hitColor);
 
-        if (hit.collider != null)
+
+        if (hit.collider != null || hit2.collider != null || hit3.collider != null)
         {
             print("Player has collided with Ground layer");
             ground = true;
+            hitColor = Color.green;
 
         }
         else
         {
             ground = false;
         }
-        return ground;
-        // draw a debug ray to show ray position
-        // You need to enable gizmos in the editor to see these
-        
 
+        Debug.DrawRay(transform.position + rayOffset1, -Vector2.up * rayLength, hitColor);
+        Debug.DrawRay(transform.position + rayOffset2, -Vector2.up * rayLength, hitColor);
+        Debug.DrawRay(transform.position + rayOffset3, -Vector2.up * rayLength, hitColor);
+
+        return ground;
     }
-    
+
     public void FlipObject(bool flip)
     {
         // get the SpriteRenderer component
@@ -61,6 +68,50 @@ public class Hscript : MonoBehaviour
         // Start is called before the first frame update
 
     }
+    public int Pacing()
+    {
+        float rayLength = 0.1f; // length of raycast
+        Vector3 rayOffset1 = new Vector3(0, -0.3f, 0);
+        Vector3 rayOffset2 = new Vector3(-0.2f, -0.3f, 0);
+        Vector3 rayOffset3 = new Vector3(0.2f, -0.3f, 0);
 
+        //cast a ray downward 
+        RaycastHit2D hit;
+        RaycastHit2D hit2;
+        RaycastHit2D hit3;
+
+        hit = Physics2D.Raycast(transform.position + rayOffset1, Vector2.down, rayLength, groundLayerMask);
+        hit2 = Physics2D.Raycast(transform.position + rayOffset2, Vector2.down, rayLength, groundLayerMask);
+        hit3 = Physics2D.Raycast(transform.position + rayOffset3, Vector2.down, rayLength, groundLayerMask);
+        
+        Color hitColor = Color.white;
+        int flip = 1;
+
+        if (hit3.collider != null && hit2.collider == null)
+        {
+            SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+            print("2");
+            hitColor = Color.green;
+            flip = 2;
+        }
+        if (hit2.collider != null && hit3.collider == null)
+        {
+            SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+            print("3");
+            hitColor = Color.green;
+            flip = 3;
+        }
+        if (hit2.collider != null && hit3.collider != null && hit.collider != null)
+        {
+            print("1");
+            flip = 1;
+        }
+
+        Debug.DrawRay(transform.position + rayOffset1, -Vector2.up * rayLength, hitColor);
+        Debug.DrawRay(transform.position + rayOffset2, -Vector2.up * rayLength, hitColor);
+        Debug.DrawRay(transform.position + rayOffset3, -Vector2.up * rayLength, hitColor);
+
+        return flip;
+    }
 
 }
