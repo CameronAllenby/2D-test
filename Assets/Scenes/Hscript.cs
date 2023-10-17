@@ -74,11 +74,13 @@ public class Hscript : MonoBehaviour
         Vector3 rayOffset1 = new Vector3(0, -0.3f, 0);
         Vector3 rayOffset2 = new Vector3(-0.2f, -0.3f, 0);
         Vector3 rayOffset3 = new Vector3(0.2f, -0.3f, 0);
+        
 
         //cast a ray downward 
         RaycastHit2D hit;
         RaycastHit2D hit2;
         RaycastHit2D hit3;
+      
 
         hit = Physics2D.Raycast(transform.position + rayOffset1, Vector2.down, rayLength, groundLayerMask);
         hit2 = Physics2D.Raycast(transform.position + rayOffset2, Vector2.down, rayLength, groundLayerMask);
@@ -110,8 +112,7 @@ public class Hscript : MonoBehaviour
         Debug.DrawRay(transform.position + rayOffset1, -Vector2.up * rayLength, hitColor);
         Debug.DrawRay(transform.position + rayOffset2, -Vector2.up * rayLength, hitColor);
         Debug.DrawRay(transform.position + rayOffset3, -Vector2.up * rayLength, hitColor);
-
+        
         return flip;
     }
-
-}
+    

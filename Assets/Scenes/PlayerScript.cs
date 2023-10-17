@@ -8,6 +8,7 @@ public class PlayerScript : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
     SpriteRenderer sr;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,15 +25,16 @@ public class PlayerScript : MonoBehaviour
     {
         
     }
-   
 
+    
 
-
+    int playerHealth = 100;
     // Update is called once per frame
     void Update()
     {
+        if (helper.OnCollisionEnter2D() == true);
 
-      
+
 
         int speed = 1;
         anim.speed = 1;
@@ -57,17 +59,22 @@ public class PlayerScript : MonoBehaviour
             anim.SetTrigger("attack1");
         }
 
-
         if (helper.DoRayCollisionCheck() == true)
         {
             if (Input.GetKey("space"))
             {
-                velocity.y = 3.5f;
-                anim.SetBool("jump", true);
+                velocity.y = 4f;
                 print("do jump");
-
+                
             }
         }
+        if (helper.DoRayCollisionCheck() == false)
+        {
+            anim.SetBool("jump", true);
+        }
+       
+        
+            
         
         rb.velocity = velocity;
 

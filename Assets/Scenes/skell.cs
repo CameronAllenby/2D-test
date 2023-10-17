@@ -13,61 +13,41 @@ public class skell : MonoBehaviour
     {
         helper = gameObject.AddComponent<Hscript>();
         sr = GetComponent<SpriteRenderer>();
-        
+
     }
 
-    
+    int speed = 1;
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        int speed = 0;
+
         if (helper.Pacing() != 1)
         {
-            speed = 1;
-            if (helper.Pacing() == 2)
+            speed = speed * -1;
+            if (helper.Pacing() != 2)
             {
-                speed = 1;
+                sr.flipX = true;
             }
-            if (helper.Pacing() == 3)
+            else
             {
-                speed = -1;
+                sr.flipX = false;
             }
         }
         transform.position = new Vector2(transform.position.x + (speed * Time.deltaTime), transform.position.y);
-        //float speed = 1f;
 
 
-        //Vector3 scale = transform.localScale;
 
-        /*if (player.transform.position.x < 0.5 && transform.position.x > -0.5)
-        {
-            speed = 0;
-            print("yes");
-        }
 
-        if (player.transform.position.x > transform.position.x) 
-        {
-            sr.flipX = true;
-            transform.position = new Vector2(transform.position.x + (speed * Time.deltaTime), transform.position.y);
-        }
-
-        else 
-        { 
-            sr.flipX = false;
-            transform.position = new Vector2(transform.position.x + (-speed * Time.deltaTime), transform.position.y);
-        }
     }
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if (collision != null && collision.gameObject.name == "CoolGuy")
+
+        if (collision.gameObject.name == "CoolGuy")
         {
-            speed = 0f;
-           
-        }*/
+            print("ggg");
 
-
-
-
+        }
     }
+
 }
+
